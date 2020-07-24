@@ -8,81 +8,54 @@ This project demonstrates how to use the Cora Z7-07S's ZYNQ FPGA's analog-to-dig
 
 To use this demo, the Cora Z7-07S must be connected to a computer over MicroUSB, which must be running a serial terminal. For more information on how to set up and use a serial terminal, such as Tera Term or PuTTY, refer to [this tutorial](https://reference.digilentinc.com/learn/programmable-logic/tutorials/tera-term).
 
-A channel select index can be incremented by pressing button 0 and decremented by pressing button 1. The table below shows how the channel select index is used to select from the Cora's various analog inputs. RGB LED 0 is used to show the sign of the selected analog input. 
-If the voltage read is greater than 0.5 Volts, the RGB LED is green; if the voltage read is less than -0.5 Volts, the RGB LED is red.
+A channel select index can be incremented by pressing button 0 and decremented by pressing button 1. The table below shows how the channel select index is used to select from the Cora's various analog inputs. RGB LED 0 is used to show the sign of the selected analog input. If the voltage reading is greater than 0.5 Volts, the RGB LED is green; if the voltage reading is less than -0.5 Volts, the RGB LED is red.
 
-| Index     | Analog Input/s                           |
+**Warning:** *Take care not to drive analog inputs below the Cora's ground or above 1.0V (for differential inputs) or above 3.3V (for single-ended inputs). Differential inputs operating in Bipolar mode provide negative readings when the negative input pin of the pair has a higher voltage than the positive, however, this does NOT imply that these inputs can safely be driven below the system ground.*
+
+| Index     | Analog Input/s                           | 
 | --------- | ---------------------------------------- |
 | 0         | VP/VN Dedicated Differential Input       |
 | 1         | Shield Header A6-A7 Differential Input   |
 | 2         | Shield Header A8-A9 Differential Input   |
 | 3         | Shield Header A10-A11 Differential Input |
-| 3         | Shield Header A0 Single-Ended Input      |
-| 3         | Shield Header A1 Single-Ended Input      |
-| 3         | Shield Header A2 Single-Ended Input      |
-| 3         | Shield Header A3 Single-Ended Input      |
-| 3         | Shield Header A4 Single-Ended Input      |
-| 3         | Shield Header A5 Single-Ended Input      |
-
+| 4         | Shield Header A0 Single-Ended Input      |
+| 5         | Shield Header A1 Single-Ended Input      |
+| 6         | Shield Header A2 Single-Ended Input      |
+| 7         | Shield Header A3 Single-Ended Input      |
+| 8         | Shield Header A4 Single-Ended Input      |
+| 9         | Shield Header A5 Single-Ended Input      |
 
 Requirements
 ------------
 * **Cora Z7-07S**: To purchase a Cora Z7-07S, see the [Digilent Store](https://store.digilentinc.com/cora-z7-zynq-7000-single-core-and-dual-core-options-for-arm-fpga-soc-development/).
-* **Vivado 2018.2 Installation with Xilinx SDK**: To set up Vivado, see the [Installing Vivado and Digilent Board Files Tutorial](https://reference.digilentinc.com/vivado/installing-vivado/start).
-* **Serial Terminal Emulator**: 
+* **Vivado and Vitis 2020.1 Installations**: [Installing Vivad, Vitis, and Digilent Board Files](https://reference.digilentinc.com/learn/programmable-logic/tutorials/2020.1/installation) guide.
 * **MicroUSB Cable**
 * **Wires and a Circuit to Measure**
 
 Demo Setup
 ----------
+**Note:** *Releases have not yet been created for either variant of this demo.*
 
-1. Download the most recent release ZIP archive ("Cora-Z7-07S-XADC-2018.2-*.zip") from the repo's [releases page](https://github.com/Digilent/Cora-Z7-07S-XADC/releases).
-2. Extract the downloaded ZIP.
-3. Open the XPR project file, found at \<archive extracted location\>/vivado_proj/Cora-Z7-07S-XADC.xpr, included in the extracted release archive in Vivado 2018.2.
-4. In the toolbar at the top of the Vivado window, select **File -> Export -> Export Hardware**. Select **\<Local to Project\>** as the Exported Location and make sure that the **Include bitstream** box is checked, then click **OK**.
-5. In the toolbar at the top of the Vivado window, select **File -> Launch SDK**. Select **\<Local to Project\>** as both the workspace location and exported location, then click **OK**.
-6. With Vivado SDK opened, wait for the hardware platform exported by Vivado to be imported.
-7. In the toolbar at the top of the SDK window, select **File -> New -> Application Project**.
-8. Fill out the fields in the first page of the New Application Project Wizard as in the table below. Most of the listed values will be the wizard's defaults, but are included in the table for completeness.
+**Note:** *Other releases may require other steps be taken to use them. Make sure to check the version of this README found in the commit associated with that release's tag for instructions.*
 
-| Setting                                 | Value                             |
-| --------------------------------------- | --------------------------------- |
-| Project Name                            | Cora Z7-07S-XADC                  |
-| Use default location                    | Checked box                       |
-| OS Platform                             | standalone                        |
-| Target Hardware: Hardware Platform      | design_1_wrapper_hw_platform_0    |
-| Target Hardware: Processor              | ps7_cortexa9_0                    |
-| Target Software: Language               | C                                 |
-| Target Software: Board Support Package  | Create New (Cora Z7-07S-XADC_bsp) |
-
-9. Click **Next**.
-10. From the list of template applications, select "Empty Application", then click **Finish**.
-11. In the Project Explorer pane to the left of the SDK window, expand the new application project (named "Cora-Z7-07S-XADC").
-12. Right click on the "src" subdirectory of the application project and select **Import**.
-13. In the "Select an import wizard" pane of the window that pops up, expand **General** and select **File System**. Then click **Next**.
-14. Fill out the fields of the "File system" screen as in the table below. Most of the listed values will be the defaults, but are included in the table for completeness.
-
-| Setting                                                | Value                                      |
-| -                                                      | -                                          |
-| From directory                                         | \<archive extracted location\>/sdk_appsrc  |
-| Files to import pane: sdk_appsrc                       | Checked box                                |
-| Into folder                                            | Cora-Z7-07S-XADC/src                       |
-| Options: Overwrite existing resources without warning  | Checked box                                |
-| Options: Create top-level folder                       | Unchecked box                              |
-
-15. Click **Finish**.
-
-<Note for maintainers: This project does not require any additional configuration of application or bsp projects. Projects that require any of this configuration should have the steps required to do so described here.>
-
-16. Plug in a test circuit to the Cora Z7-07S's analog input pins.
-17. Open a serial terminal application (such as TeraTerm FIXME LINK) and connect it to the Cora Z7-07S's serial port, using a baud rate of 115200.
-18. In the toolbar at the top of the SDK window, select **Xilinx -> Program FPGA**. Leave all fields as their defaults and click "Program".
-19. In the Project Explorer pane, right click on the "Cora-Z7-07S-XADC" application project and select "Run As -> Launch on Hardware (System Debugger)".
-20. The application will now be running on the Cora Z7-07S. It can be interacted with as described in the first section of this README.
+1. Download the most recent release ZIP archives from the repo's [releases page](https://github.com/Digilent/Cora-Z7-07S-XADC/releases). These files are called "Cora-Z7-07S-XADC-hw-2020.1-1.zip" and "Cora-Z7-07S-XADC-sw-2020.1-1.zip". The -hw- archive contains an exported XPR project file and associated sources for use with Vivado. The -sw- archive contains exported project files for use with Vitis. Both of these files contain the build products of the associated tool.
+2. Extract the downloaded -hw- archive. (Do not extract the -sw- archive)
+3. Open Vivado 2020.1.
+3. Open the XPR project file, found at \<archive extracted location\>/hw/hw.xpr, included in the extracted hardware release in Vivado 2020.1.
+4. No additional steps are required within Vivado. The project can be viewed, modified, and rebuilt, and a new platform can be exported, as desired.
+5. Open Vitis 2020.1. Choose an empty folder as the *Workspace* to launch into.
+6. With Vitis opened, click the **Import Project** button, under **PROJECT** in the welcome screen.
+7. Choose *Vitis project exported zip file* as the Import type, then click **Next**.
+8. **Browse** for the downloaded -sw- archive, and **Open** it.
+9. Make sure that all boxes are checked in order to import each of the projects present in the archive will be imported, then click **Finish**.
+10. Connect your test circuit to appropriate shield header analog inputs. Take note of the warning in the Description section, above.
+11. Connect the Cora Z7 to your computer via the MicroUSB programming cable, make sure the power source select jumper is set to USB or WALL (depending on whether you are using an external supply), then power on the board by flipping the power switch to the ON position.
+12. Open a serial terminal application (such as TeraTerm or PuTTY) and connect it to the Cora Z7's serial port, using a baud rate of 115200.
+13. In the *Assistant* pane at the bottom left of the Vitis window, right click on the project marked `[System]`, and select **Run** -> **Launch Hardware**. When the demo is finished launching, messages will be able to be seen through the serial terminal, and the demo can be used as described in this document's *Description* section, above.
 
 Next Steps
 ----------
-This demo can be used as a basis for other projects by modifying the hardware platform in the Vivado project's block design or by modifying the SDK application project.
+This demo can be used as a basis for other projects by modifying the hardware platform in the Vivado project's block design or by modifying the application project.
 
 Check out the Cora Z7-07S's [Resource Center](https://reference.digilentinc.com/reference/programmable-logic/cora-z7/start) to find more documentation, demos, and tutorials.
 
@@ -90,4 +63,4 @@ For technical support or questions, please post on the [Digilent Forum](forum.di
 
 Additional Notes
 ----------------
-For more information on how this project is version controlled, refer to the [digilent-vivado-scripts repo](https://github.com/digilent/digilent-vivado-scripts).
+For more information on how this project is version controlled, refer to the READMEs found in this repository's hw/scripts and sw/src folders.
