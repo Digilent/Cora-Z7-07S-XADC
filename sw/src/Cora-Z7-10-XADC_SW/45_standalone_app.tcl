@@ -17,7 +17,7 @@ set app_name [file tail $script_dir]
 set lang "c"
 set domain "domain_ps7_cortexa9_0"
 set platform "design_1_wrapper_1"
-set sysproj "Cora-Z7-07S-XADC_SW_system"
+set sysproj "Cora-Z7-10-XADC_SW_system"
 
 # Handle dependent variables
 if {$lang == "c"} {
