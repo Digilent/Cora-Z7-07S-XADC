@@ -1,12 +1,12 @@
-Cora Z7-07S XADC Demo
+Cora Z7-10 XADC Demo
 ====================
 
 Description
 -----------
 
-This project demonstrates how to use the Cora Z7-07S's ZYNQ FPGA's analog-to-digital core (referred to as the XADC) with a ZYNQ processor. Vivado is used to build the demo's hardware platform, and Xilinx SDK is used to program the bitstream onto the board and to build and deploy a C application.
+This project demonstrates how to use the Cora Z7-10's ZYNQ FPGA's analog-to-digital core (referred to as the XADC) with a ZYNQ processor. Vivado is used to build the demo's hardware platform, and Xilinx SDK is used to program the bitstream onto the board and to build and deploy a C application.
 
-To use this demo, the Cora Z7-07S must be connected to a computer over MicroUSB, which must be running a serial terminal. For more information on how to set up and use a serial terminal, such as Tera Term or PuTTY, refer to [this tutorial](https://reference.digilentinc.com/learn/programmable-logic/tutorials/tera-term).
+To use this demo, the Cora Z7-10 must be connected to a computer over MicroUSB, which must be running a serial terminal. For more information on how to set up and use a serial terminal, such as Tera Term or PuTTY, refer to [this tutorial](https://reference.digilentinc.com/learn/programmable-logic/tutorials/tera-term).
 
 A channel select index can be incremented by pressing button 0 and decremented by pressing button 1. The table below shows how the channel select index is used to select from the Cora's various analog inputs. RGB LED 0 is used to show the sign of the selected analog input. If the voltage reading is greater than 0.5 Volts, the RGB LED is green; if the voltage reading is less than -0.5 Volts, the RGB LED is red.
 
@@ -27,7 +27,7 @@ A channel select index can be incremented by pressing button 0 and decremented b
 
 Requirements
 ------------
-* **Cora Z7-07S**: To purchase a Cora Z7-07S, see the [Digilent Store](https://store.digilentinc.com/cora-z7-zynq-7000-single-core-and-dual-core-options-for-arm-fpga-soc-development/).
+* **Cora Z7-10**: To purchase a Cora Z7-10, see the [Digilent Store](https://store.digilentinc.com/cora-z7-zynq-7000-single-core-and-dual-core-options-for-arm-fpga-soc-development/).
 * **Vivado and Vitis 2020.1 Installations**: [Installing Vivad, Vitis, and Digilent Board Files](https://reference.digilentinc.com/learn/programmable-logic/tutorials/2020.1/installation) guide.
 * **MicroUSB Cable**
 * **Wires and a Circuit to Measure**
@@ -38,7 +38,7 @@ Demo Setup
 
 **Note:** *Other releases may require other steps be taken to use them. Make sure to check the version of this README found in the commit associated with that release's tag for instructions.*
 
-1. Download the most recent release ZIP archives from the repo's [releases page](https://github.com/Digilent/Cora-Z7-07S-XADC/releases). These files are called "Cora-Z7-07S-XADC-hw-2020.1-1.zip" and "Cora-Z7-07S-XADC-sw-2020.1-1.zip". The -hw- archive contains an exported XPR project file and associated sources for use with Vivado. The -sw- archive contains exported project files for use with Vitis. Both of these files contain the build products of the associated tool.
+1. Download the most recent release ZIP archives from the repo's [releases page](https://github.com/Digilent/Cora-Z7-07S-XADC/releases). These files are called "Cora-Z7-10-XADC-hw-2020.1-1.zip" and "Cora-Z7-10-XADC-sw-2020.1-1.zip". The -hw- archive contains an exported XPR project file and associated sources for use with Vivado. The -sw- archive contains exported project files for use with Vitis. Both of these files contain the build products of the associated tool.
 2. Extract the downloaded -hw- archive. (Do not extract the -sw- archive)
 3. Open Vivado 2020.1.
 3. Open the XPR project file, found at \<archive extracted location\>/hw/hw.xpr, included in the extracted hardware release in Vivado 2020.1.
@@ -57,7 +57,7 @@ Next Steps
 ----------
 This demo can be used as a basis for other projects by modifying the hardware platform in the Vivado project's block design or by modifying the application project.
 
-Check out the Cora Z7-07S's [Resource Center](https://reference.digilentinc.com/reference/programmable-logic/cora-z7/start) to find more documentation, demos, and tutorials.
+Check out the Cora Z7-10's [Resource Center](https://reference.digilentinc.com/reference/programmable-logic/cora-z7/start) to find more documentation, demos, and tutorials.
 
 For technical support or questions, please post on the [Digilent Forum](forum.digilentinc.com).
 
