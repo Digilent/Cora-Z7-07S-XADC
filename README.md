@@ -1,6 +1,8 @@
 Cora Z7-07S XADC Demo
 ====================
 
+IMPORTANT: This repository is obsolete. See the [new demo page](https://digilent.com/reference/programmable-logic/cora-z7/demos/xadc) on Digilent Reference for information about this demo. The sources have been moved into the [07S/XADC/master](https://github.com/Digilent/Cora-Z7/tree/07S/XADC/master) branch of the Cora-Z7 repository.
+
 Description
 -----------
 
